@@ -1,0 +1,19 @@
+#PRODUCT class
+#PRODUCT CLASS
+class Product
+  attr_accessor :id,:name,:price,:description
+  def initialize(id, name, price, description)
+    # Instance variables
+    @id = id
+    @name = name
+    @price = price
+    @description = description
+  end
+
+  def display_info
+    puts "ID: #{@id}"
+    puts "Name: #{@name}"
+    puts "Price: $#{@price}"
+    puts "Description: #{@description}"
+  end
+end
