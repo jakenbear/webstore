@@ -32,10 +32,12 @@ class Location
   def remove_product(prod,q)
     newq = @product_list[prod] - q
     if newq >= 0
+      #@product_list[prod]
       @product_list[prod] = newq
-      puts "Removed #{q} items - #{@product_list[prod]}"
+      return 99
     else
       puts "Error: Not that many to remove!"
+      return 0
     end
   end
 
@@ -47,15 +49,4 @@ class Location
     return qty
   end
 
-  #Transfer a product from location to location
-  def transfer(qty,id,from,to)
-    #Ensure from location has product in Stock
-    if (from.get_local_qauntity(from.id) >= qty)
-      to.add_product(id,qty)
-      #remove product from from Store
-      from.remove_product(id,qty)
-      #Report action
-      puts "Moved #{qty} items from #{from.name} to #{to.name}"
-    end
-  end
 end

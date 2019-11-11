@@ -23,6 +23,27 @@ attr_accessor :id,:name,:description,:location_list
     puts "Added Location ID: #{id.id}, #{id.name} to #{@name}"
   end
 
+  def remove_location(location)
+    #THIS WILL ONLY ALLOW YOU TO REMOVE A LOCATION IF LOCATION HAS NO STOCK
+    items = 0 #start at 0
+    for item in location.product_list
+      items += item[1] #add to item totals
+    end
+
+    if items == 0
+      @location_list.delete_if {|obj| obj.id == location.id}
+      puts "REMOVED LOCATION ID: #{location.id}, #{location.name} From #{@name}"
+    else
+      puts "ERROR: Please transfer all inventory from #{location.name} before removing from #{@name}!"
+    end
+  end
+
+  def purge_location(location)
+    #THIS WILL PURGE LOCATION REGARDLESS OF INVENTORY
+    @location_list.delete_if {|obj| obj.id == location.id}
+    puts "PURGED LOCATION ID: #{location.id}, #{location.name} From #{@name}"
+  end
+
   def get_product_qauntity(id)
     qty = 0
     for item in @location_list
@@ -38,7 +59,7 @@ attr_accessor :id,:name,:description,:location_list
     for item in @location_list
       plist = item.product_list
       plist.each do |key, value|
-        puts "Store Id: #{item.id}, Product Id: #{key}, QTY: #{value}"
+        puts "#{item.name}, Product Id: #{key}, QTY: #{value}"
       end
     end
   end
@@ -54,9 +75,27 @@ attr_accessor :id,:name,:description,:location_list
     puts "-----------------------"
   end
 
+  #Transfer a product from location to location
+  def transfer(qty,id,from,to)
+    #Ensure from location has product in Stock
+    if (get_product_qauntity(from.id) >= qty)
+      #remove product from from Store
+      rmv = from.remove_product(id,qty)
+      if rmv == 99
+        puts "REMOVED #{qty} ITEMS - (ID:#{id}) from #{from.name}"
+      end
+      to.add_product(id,qty)
+      puts "SENT #{qty} ITEMS - (ID:#{id}) to #{to.name}"
+      #Report action
+      #puts "Moved #{qty} items from #{from.name} to #{to.name}"
+    else
+      puts "ERROR: Tried to transfer more items than you have!"
+    end
+  end
+
   #Helper functions
   def show_global_item_total_in_store(store,prod)
-    puts "Total in Stock store wide: #{prod.name}: #{store.get_product_qauntity(prod.id)}"
+    puts "TOTAL STOCK (All locations): #{prod.name}: #{store.get_product_qauntity(prod.id)} UNITS"
   end
 
   def get_global_item_total_in_store(store,prod)
@@ -64,7 +103,7 @@ attr_accessor :id,:name,:description,:location_list
   end
 
   def show_global_item_total_in_location(location,prod)
-    puts "Total in Stock at Location #{location.id}: #{prod.name}: #{location.get_local_qauntity(prod.id)}"
+    puts "#{location.name} - (ID:#{prod.id} - #{prod.name}) : #{location.get_local_qauntity(prod.id)} UNITS"
   end
 
   def get_global_item_total_in_location(location,prod)

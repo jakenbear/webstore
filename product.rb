@@ -16,4 +16,5 @@ class Product
     puts "Price: $#{@price}"
     puts "Description: #{@description}"
   end
+  
 end

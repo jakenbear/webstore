@@ -7,6 +7,7 @@ require './product.rb'
 #CREATE MY STORE
 puts "CREATING STORE......"
 store = Store.new(1,"JAKE'S ARCADE GAMES AND STUFF", "Your number 1 source for classic video game machines.")
+store.display_info()
 #CREATE MY PHYSICAL LOCATIONS
 puts "CREATING PHYSICAL LOCATIONS......"
 location1 = Location.new(1,"The Cabinet Farm","Toroto")
@@ -29,6 +30,9 @@ store.add_location(location2)
 store.add_location(location3)
 store.add_location(location4)
 
+#Show Store info again
+store.display_info()
+
 #Add Sample products to each location
 location1.add_product(1,10)
 location1.add_product(2,15)
@@ -36,22 +40,15 @@ location2.add_product(1,19)
 location2.add_product(3,25)
 location3.add_product(4,33)
 location3.add_product(5,3)
+location4.add_product(1,33)
+location4.add_product(5,23)
 
-#store.display_info()
-store.display_info()
-location3.add_product(5,378)
-store.display_info()
-#location1.display_info()
-#location2.display_info()
-#location3.display_info()
 
 puts store.get_product_qauntity(1)
 puts store.get_product_qauntity(2)
 puts store.get_product_qauntity(3)
 puts store.get_product_qauntity(4)
 puts store.get_product_qauntity(5)
-
-store.display_all_inventory()
 
 store.show_global_item_total_in_store(store,prod1)
 store.show_global_item_total_in_location(location1,prod1)
@@ -66,17 +63,30 @@ puts test
 test2 = store.get_global_item_total_in_location(location1,prod2)
 puts test2
 
-puts store.location_list.to_s
+#puts store.location_list.to_s
 
 #puts store.get_product_totals(1)
 store.show_global_item_total_in_location(location1,prod1)
 store.show_global_item_total_in_location(location2,prod1)
-location1.transfer(5,1,location1,location2)
+store.transfer(7,1,location1,location2)
 store.show_global_item_total_in_location(location1,prod1)
 store.show_global_item_total_in_location(location2,prod1)
-location1.remove_product(1,2)
-store.show_global_item_total_in_location(location1,prod1)
+store.show_global_item_total_in_store(store,prod1)
 store.display_all_inventory()
-puts location1.to_s
+store.remove_location(location4)
+store.display_info()
+store.transfer(33,1,location4,location1)
+store.transfer(2443,5,location4,location1)
+store.transfer(13,5,location4,location1)
+store.remove_location(location4)
+store.transfer(10,5,location4,location1)
+store.remove_location(location4)
+store.purge_location(location1)
+store.display_all_inventory()
+
+
+#store.display_info()
+
+#puts store.location_list
 
 end
