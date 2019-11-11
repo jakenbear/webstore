@@ -7,17 +7,20 @@ attr_accessor :id,:name,:description,:location_list
     @name = name
     @description = description
     @location_list = []
+    puts "NEW STORE CREATED: #{@name}, #{@description}"
   end
 
   def display_info
+    puts "\n=======STORE INFO==========="
+    puts "Store ID: #{@id}"
     puts "Store Name: #{@name}"
-    puts "ID: #{@id}"
     puts "Description: #{@description}"
-    puts "Locations: #{@location_list}"
+    puts print_location_list()
   end
 
   def add_location(id)
     @location_list.push id
+    puts "Added Location ID: #{id.id}, #{id.name} to #{@name}"
   end
 
   def get_product_qauntity(id)
@@ -38,6 +41,17 @@ attr_accessor :id,:name,:description,:location_list
         puts "Store Id: #{item.id}, Product Id: #{key}, QTY: #{value}"
       end
     end
+  end
+
+  def print_location_list
+    puts "\n=======LOCATION INFO==========="
+    for item in @location_list
+      puts "-----------------------"
+      puts "Location Id: #{item.id}"
+      puts "Location Name: #{item.name}"
+      puts "Location City: #{item.city}"
+    end
+    puts "-----------------------"
   end
 
   #Helper functions

@@ -1,4 +1,3 @@
-#PRODUCT class
 #PRODUCT CLASS
 class Product
   attr_accessor :id,:name,:price,:description
@@ -8,6 +7,7 @@ class Product
     @name = name
     @price = price
     @description = description
+    puts "NEW PRODUCT ADDED - ID: #{@id}, #{@name}, $#{@price}, #{@description}"
   end
 
   def display_info

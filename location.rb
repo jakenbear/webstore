@@ -6,6 +6,7 @@ class Location
     @name = name
     @city = city
     @product_list = {}
+    puts "NEW LOCATION ADDED - ID: #{@id}, NAME: #{@name}, CITY: #{@city}"
   end
 
   def to_s

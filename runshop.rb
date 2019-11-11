@@ -5,34 +5,29 @@ require './location.rb'
 require './product.rb'
 
 #CREATE MY STORE
-puts "CREATING TEST STORE!"
-store = Store.new(1,"Jake's Store", "A fancy game store franchise!")
-puts "STORE CREATED..."
+puts "CREATING STORE......"
+store = Store.new(1,"JAKE'S ARCADE GAMES AND STUFF", "Your number 1 source for classic video game machines.")
 #CREATE MY PHYSICAL LOCATIONS
-puts "CREATING PHYSICAL LOCATIONS!"
-location1 = Location.new(1,"EB Games","Toroto")
-puts "LOCATION 1 CREATED..."
-location2 = Location.new(2,"Jakes Games","New York")
-puts "LOCATION 2 CREATED..."
-location3 = Location.new(3,"Bikes and Horses","Calgary")
-puts "LOCATION 3 CREATED..."
-location4 = Location.new(4,"Retro Game Shop","Vancouver")
-puts "LOCATION 4 CREATED..."
+puts "CREATING PHYSICAL LOCATIONS......"
+location1 = Location.new(1,"The Cabinet Farm","Toroto")
+location2 = Location.new(2,"Classic Retro Works","New York")
+location3 = Location.new(3,"Gamerama and Phone repair","Calgary")
+location4 = Location.new(4,"Sprockets and Sprongs","Vancouver")
 
+puts "CREATING PRODUCTS......"
 #CREATE MY PRODUCTS
-prod1 = Product.new(1,"Coke",5,"A can of coke.")
-prod2 = Product.new(2,"Apple",15,"An apple.")
-prod3 = Product.new(3,"Toy Car",25,"A toy car.")
-prod4 = Product.new(4,"Amiibo",3,"An amiibo.")
-prod5 = Product.new(5,"Horse",56,"A horse.")
+prod1 = Product.new(1,"BURGER TIME",250,"Match the hamburgers to save the world.")
+prod2 = Product.new(2,"GALAGA",375,"Space Aliens are coming for you.")
+prod3 = Product.new(3,"PAPER BOY",425,"Deliver all of the newspapers")
+prod4 = Product.new(4,"DIG DUG",300,"The classic digging classic.")
+prod5 = Product.new(5,"DONKEY KONG",750,"Can you reach the top?")
 
+puts "ASSIGNING PHYSICAL LOCATIONS TO STORE......"
 #LOAD MY LOCATIONS TO STORE
 store.add_location(location1)
 store.add_location(location2)
 store.add_location(location3)
 store.add_location(location4)
-#store.add_location(location2.getId())
-#store.add_location(location3.getId())
 
 #Add Sample products to each location
 location1.add_product(1,10)
